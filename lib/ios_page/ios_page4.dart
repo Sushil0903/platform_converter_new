@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -35,7 +37,9 @@ class _Iospage4State extends State<Iospage4> {
             leading: Icon(CupertinoIcons.person,size: 30,),
             subtitle: Text("Update profile data"),
             title: Text("Profile",style: TextStyle(fontWeight: FontWeight.bold),),
-            trailing: CupertinoSwitch(value: value.isProfile??false,onChanged: (value) {
+            trailing: CupertinoSwitch(
+              value: value.isProfile??false,
+              onChanged: (value) {
               Provider.of<MainProvider>(context, listen: false)
                   .showProfile(value);
 
@@ -47,12 +51,10 @@ class _Iospage4State extends State<Iospage4> {
               false,
           child: Container(
             height: 300,
-            // color: CupertinoColors.white,
             child: Column(
               children: [
                 CupertinoButton(
                   onPressed: () {
-                    // Show dialog to choose between camera or gallery
                     showCupertinoDialog(
                       context: context,
                       builder: (BuildContext context) {
@@ -79,8 +81,6 @@ class _Iospage4State extends State<Iospage4> {
                                               .camera);
 
                                       if (file != null) {
-                                        // Do something with the captured image file
-                                        // For example, you can set it to the provider
                                         Provider.of<MainProvider>(
                                             context,
                                             listen: false)
@@ -88,7 +88,6 @@ class _Iospage4State extends State<Iospage4> {
                                             file.path);
                                         Navigator.pop(context);
                                       } else {
-                                        // Handle if the user cancels capturing the image
                                         print(
                                             'User cancelled capturing image Camera');
                                       }
@@ -102,15 +101,12 @@ class _Iospage4State extends State<Iospage4> {
                                   Divider(),
                                   GestureDetector(
                                     onTap: () async {
-                                      //   Handle camera option
                                       XFile? file =
                                       await ImagePicker()
                                           .pickImage(
                                           source: ImageSource
                                               .gallery);
                                       if (file != null) {
-                                        // Do something with the captured image file
-                                        // For example, you can set it to the provider
                                         Provider.of<MainProvider>(
                                             context,
                                             listen: false)
@@ -145,12 +141,12 @@ class _Iospage4State extends State<Iospage4> {
                             .isImage
                             ? CupertinoColors.activeBlue
                             : null,
-                        // backgroundImage:
-                        // Provider.of<MainProvider>(context)
-                        //     .isImage
-                        //     ? null
-                        //     : FileImage(File(value.XFile ??
-                        //     "Image_NOT_Found")),
+                        backgroundImage:
+                        Provider.of<MainProvider>(context)
+                            .isImage
+                            ? null
+                            : FileImage(File(value.XFile ??
+                            "Image_NOT_Found")),
                       ),
                       Positioned(
                         top: 60,
@@ -214,7 +210,7 @@ class _Iospage4State extends State<Iospage4> {
                     ),
                     TextButton(
                       onPressed: () {
-                        // String? ProfileName = ProfileNameController.text;
+
                         if (ProfileNameController
                             .text.isNotEmpty &&
                             ProfileBioController
@@ -239,8 +235,6 @@ class _Iospage4State extends State<Iospage4> {
                                   ),
                                 );
                               });
-                          print(
-                              "Name= ${ProfileNameController.text} AND Bio= ${ProfileBioController.text}");
                         } else {
                           print("Field is Blank");
                         }

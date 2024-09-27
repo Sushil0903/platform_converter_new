@@ -26,7 +26,7 @@ class _HomepageState extends State<Homepage> {
     if (isAndroid) {
       return Scaffold(
         appBar: AppBar(
-          title: Text("Android"),
+          title: Text("Platform Converter"),
           actions: [
             Consumer<MainProvider>(
               builder: (BuildContext context, valu, Widget? child) {
@@ -98,7 +98,7 @@ class _HomepageState extends State<Homepage> {
             return CustomScrollView(
               slivers: [
                 CupertinoSliverNavigationBar(
-                  largeTitle: Text("IOS"),
+                  largeTitle: Text("Platform Converter"),
                   trailing: Consumer<MainProvider>(
                     builder: (BuildContext context, MainProvider mainProvider,
                         Widget? child) {

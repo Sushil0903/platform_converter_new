@@ -57,12 +57,10 @@ class _Page4State extends State<Page4> {
               visible: Provider.of<MainProvider>(context).isProfile ?? false,
               child: Container(
                 height: 350,
-                // color: CupertinoColors.white,
                 child: Column(
                   children: [
                     TextButton(
                       onPressed: () {
-                        // Show dialog to choose between camera or gallery
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
@@ -83,18 +81,12 @@ class _Page4State extends State<Page4> {
                                           XFile? file = await ImagePicker()
                                               .pickImage(
                                                   source: ImageSource.camera);
-
                                           if (file != null) {
-                                            // Do something with the captured image file
-                                            // For example, you can set it to the provider
+
                                             Provider.of<MainProvider>(context,
                                                     listen: false)
                                                 .setImage(file.path);
                                             Navigator.pop(context);
-                                          } else {
-                                            // Handle if the user cancels capturing the image
-                                            print(
-                                                'User cancelled capturing image Camera');
                                           }
                                         },
                                         child: Text(
@@ -109,8 +101,6 @@ class _Page4State extends State<Page4> {
                                               .pickImage(
                                                   source: ImageSource.gallery);
                                           if (file != null) {
-                                            // Do something with the captured image file
-                                            // For example, you can set it to the provider
                                             Provider.of<MainProvider>(context,
                                                     listen: false)
                                                 .setImage(file.path);
@@ -147,8 +137,7 @@ class _Page4State extends State<Page4> {
                                         .isImage
                                     ? Colors.blue
                                     : null,
-                                // backgroundImage: Provider.of<MainProvider>(context).isImage ? null : FileImage(
-                                //         File(value.XFile ?? "Image_NOT_Found"),),
+
                               );
                             },
                           ),
@@ -209,35 +198,13 @@ class _Page4State extends State<Page4> {
                         ),
                         TextButton(
                           onPressed: () {
-                            // String? ProfileName = ProfileNameController.text;
+
                             if (ProfileNameController.text.isNotEmpty &&
                                 ProfileBioController.text.isNotEmpty) {
                               Provider.of<MainProvider>(context, listen: false)
                                   .setProfile(ProfileNameController.text,
                                       ProfileBioController.text);
 
-                              // Show dialog indicating that data is saved
-                              showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    title: Text("Saved !!!"),
-                                    content: Text(
-                                        "Your profile data has been saved."),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.pop(
-                                              context); // Close the dialog
-                                        },
-                                        child: Text("Ok"),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                              print(
-                                  "Name= ${ProfileNameController.text} AND Bio= ${ProfileBioController.text}");
                             } else {
                               print("Field is Blank");
                             }
